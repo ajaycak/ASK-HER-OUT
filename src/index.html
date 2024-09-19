@@ -1,17 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Vanilla JavaScript App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask Her Out</title>
+    <style>
+        body {
+            background-color: #f7d6e0;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #e63946;
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 20px;
+            color: #555;
+            margin: 20px 0;
+        }
+
+        .ask-btn, .no-btn {
+            background-color: #e63946;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: transform 0.3s;
+        }
+
+        .ask-btn:hover, .no-btn:hover {
+            background-color: #d62828;
+        }
+
+        .heart {
+            color: #e63946;
+            font-size: 100px;
+            margin-top: 20px;
+        }
+
+        .no-btn {
+            background-color: #555;
+            display: none;
+            margin-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+            .ask-btn {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+
+            .heart {
+                font-size: 80px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <main>
-    <h1>Vanilla JavaScript App</h1>
-  </main>
+    <div class="container">
+        <h1>Will You Go Out With Me?</h1>
+        <p>You are amazing, and I’d love to take you out on a special date.</p>
+        <button class="ask-btn" id="yes-btn">Say Yes!</button>
+        <button class="no-btn" id="no-btn">No 😔</button>
+        <div class="heart">❤️</div>
+    </div>
+    
+    <script>
+      const yesBtn = document.getElementById('yes-btn');
+      const noBtn = document.getElementById('no-btn');
+  
+      let yesScale = 1;  // Initial scale for Yes button
+      let noScale = 1;   // Initial scale for No button
+  
+      yesBtn.addEventListener('click', () => {
+          // Redirect to the "Thanks" page
+          window.location.href = 'thanks.html';
+      });
+  
+      noBtn.addEventListener('click', () => {
+          // Increase the scale of Yes and decrease the scale of No with every click
+          yesScale += 0.2;  // Enlarge Yes button
+          noScale -= 0.2;   // Shrink No button
+  
+          // Apply the scale changes to both buttons
+          yesBtn.style.transform = `scale(${yesScale})`;
+          noBtn.style.transform = `scale(${noScale})`;
+  
+          // Disable No button if it gets too small
+          if (noScale <= 0.2) {
+              noBtn.disabled = true;
+          }
+      });
+  
+      window.onload = function() {
+          noBtn.style.display = 'inline-block';
+      };
+  </script>
+  
 </body>
-
 </html>
